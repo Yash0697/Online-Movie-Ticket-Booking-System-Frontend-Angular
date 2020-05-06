@@ -1,0 +1,98 @@
+<section class="section section--first section--bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section__wrap">
+                    <!-- section title -->
+                    <h2 class="section__title">Search Movies</h2>
+                    <!-- end section title -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- end page title -->
+
+<!-- pricing -->
+<div class="section">
+    <div class="container">
+        <div class="row">
+            <!-- plan features -->
+            <div class="col-12">
+                
+            </div>
+            <!-- end plan features -->
+
+            <!-- price -->
+            <div class="col-12 col-md-6 col-lg-4 offset-2">
+                <form #f1="ngForm" method="get">
+                <div class="price">
+                    <div class="price__item price__item--first offset-3"><span>Search By City</span></div>
+                        <button type="submit" class="price__btn">Search</button>
+                </div>
+                </form>
+            </div>
+            <!-- end price -->
+
+            <!-- price -->
+            <div class="col-12 col-md-6 col-lg-4">
+                <form #f2="ngForm" method="get">
+                    <div class="price">
+                        <div class="price__item price__item--first offset-3"><span>Search By Theatre</span></div>
+                        <button type="submit" class="price__btn">Search</button>
+                    </div>
+                </form>
+            </div>
+            <!-- end price -->
+        </div>
+<!-- end pricing -->
+<div class="row" *ngIf="f1.submitted" class="col-md-8">
+
+    <div class="sign section--bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="sign__content">
+                        <!-- authorization form -->
+                        <form #f="ngForm" method="get" (ngSubmit)="searchByCity()" class="sign__form">
+    
+                            <div class="sign__group">
+                                <input type="email" name="email" [(ngModel)]="city" class="sign__input" placeholder="City"
+                                    required>
+                            </div>
+    
+                            <button class="sign__btn" type="submit">Search</button>
+                        </form>
+                        <!-- end authorization form -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row" *ngIf="f2.submitted" class="offset-4">
+
+    <div class="sign section--bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="sign__content">
+                        <!-- authorization form -->
+                        <form #f="ngForm" method="get" (ngSubmit)="searchByTheatre()" class="sign__form">
+
+                            <div class="sign__group">
+                                <input type="email" name="email" [(ngModel)]="theatre" class="sign__input"
+                                    placeholder="Theatre" required>
+                            </div>
+
+                            <button class="sign__btn" type="submit">Search</button>
+                        </form>
+                        <!-- end authorization form -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>

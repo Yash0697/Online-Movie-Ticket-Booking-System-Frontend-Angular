@@ -1,0 +1,35 @@
+<div class="sign section--bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="sign__content">
+                    <!-- authorization form -->
+                    <form #f="ngForm" method="get" (ngSubmit)="signIn()" class="sign__form">
+
+                        <div *ngIf="invalidLogin" class="alert alert-danger">Invalid username and/or password.</div>
+                        <div class="sign__group">
+                            <input type="email" name="email" [(ngModel)]="email" class="sign__input" placeholder="Email" required>
+                        </div>
+
+                        <div class="sign__group">
+                            <input type="password" name="password" [(ngModel)]="password" class="sign__input" placeholder="Password" required>
+                        </div>
+
+                        <div class="sign__group sign__group--checkbox">
+                            <input id="remember" name="remember" type="checkbox" checked="checked">
+                            <label for="remember">Remember Me</label>
+                        </div>
+
+                        <button class="sign__btn" type="submit">Sign in</button>
+
+                        <span class="sign__text">Don't have an account? <a [routerLink]="['/signup']" routerLinkActive="router-link-active" >Sign up!</a></span>
+
+                        <span class="sign__text"><a href="#">Forgot password?</a></span>
+                    </form>
+                    <!-- end authorization form -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<router-outlet></router-outlet>

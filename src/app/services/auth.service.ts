@@ -7,19 +7,19 @@ import { map } from 'rxjs/operators';
 export class AuthService {
 
     private loginUrl = 'http://localhost:8060/accounts/authenticate';
+    private httpOptions = {
+        headers: new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': 'my-auth-token'
+        })
+    };
 
     constructor(private http: HttpClient) {
     }
 
     login(credentials) {
-        alert(credentials.email+'Yash');
-        const httpOptions = {
-            headers: new HttpHeaders({
-                'Content-Type': 'application/json',
-                'Authorization': 'my-auth-token'
-            })
-        };
-        return this.http.post(`${this.loginUrl}`, credentials, httpOptions)
+        
+        return this.http.post(`${this.loginUrl}`, credentials, this.httpOptions)
             // .pipe(map((response: Response) => {
             //     let result = response.json;
             //     let token = result['token'];

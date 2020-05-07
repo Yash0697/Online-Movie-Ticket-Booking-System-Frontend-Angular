@@ -6,7 +6,6 @@
                     <!-- authorization form -->
                     <form #f="ngForm" method="get" (ngSubmit)="signIn()" class="sign__form">
 
-                        <div *ngIf="invalidLogin" class="alert alert-danger">Invalid username and/or password.</div>
                         <div class="sign__group">
                             <input type="email" name="email" [(ngModel)]="email" class="sign__input" placeholder="Email" required>
                         </div>
@@ -14,7 +13,7 @@
                         <div class="sign__group">
                             <input type="password" name="password" [(ngModel)]="password" class="sign__input" placeholder="Password" required>
                         </div>
-
+                        <div *ngIf="invalidLogin" class="alert alert-danger"><p class="text-white bg-dark">Invalid username and/or password.</p></div>
                         <div class="sign__group sign__group--checkbox">
                             <input id="remember" name="remember" type="checkbox" checked="checked">
                             <label for="remember">Remember Me</label>

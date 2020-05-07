@@ -1,0 +1,104 @@
+<div class="sign section--bg">
+    <div class="container" style="margin-top: 140px;">
+            <div class="col-12">
+                <div class="section__wrap">
+                    <!-- section title -->
+                    <h2 class="section__title">Theatres</h2>
+                    <!-- end section title -->
+                </div>
+                <div class="sign__form">
+
+                <!-- Table  -->
+            <table class="table table-striped text-white">
+            <thead class="bg-dark text-white">
+        <tr>
+            <th>Serial</th>
+            <th>Theatre Name</th>
+            <th>Theatre City</th>
+            <th>Manager Name</th>
+            <th>Manager Contact</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let theatre of theatres; index as i">
+            <td>{{i+1}}</td>
+            <td>{{theatre.theatreName}}</td>
+            <td>{{theatre.theatreCity}}</td>
+            <td>{{theatre.managerName}}</td>
+            <td>{{ theatre.managerContact }}</td>
+            <td>
+                <button [(ngModel)]="theatre.theatreId" class="btn btn-pink btn-md rounded"
+                    (click)="deleteTheatre(theatre)"> Delete Theatre</button></td>
+        </tr>
+    </tbody>
+            </table>
+                <!-- End Table -->
+                <form #f1="ngForm" method="get" class="float-right">
+                    
+                        <span ><button type="submit" class="price__btn"><p class="ml-3 mr-3 mt-3">Add Theatre</p></button></span>
+                   
+                </form>
+
+            <div class="row" *ngIf="f1.submitted" class="col-md-8">
+            <div class="sign section--bg">
+                <div class="container">
+                    <div class="col-12">
+                <div class="sign__content">
+            <!-- authorization form -->
+                    <form #f2="ngForm" method="get" class="sign__form" (ngSubmit)="addTheatre()">
+                
+                    <div class="sign__group">
+                        <input type="text" name="theatreName" [(ngModel)]="theatreName" #tName="ngModel"
+                         class="sign__input" placeholder="Theatre Name" required>
+                        <div *ngIf="f2.submitted && tName.invalid">
+                            <div *ngIf="tName.errors.required" class="text-danger"> *Theatre Name is Required </div>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="sign__group">
+                        <input type="text" name="theatreCity" [(ngModel)]="theatreCity" #tCity="ngModel"
+                         class="sign__input" placeholder="Theatre City" required>
+                        <div *ngIf="f2.submitted && tCity.invalid">
+                            <div *ngIf="tCity.errors.required" class="text-danger"> *City Name is Required </div>
+                        </div>
+                    </div>
+                    
+                    <div class="sign__group">
+                        <input type="text" name="theatreManager" [(ngModel)]="managerName" #tMgr="ngModel"
+                         class="sign__input" placeholder="Manager Name" required>
+                        <div *ngIf="f2.submitted && tMgr.invalid">
+                            <div *ngIf="tMgr.errors.required" class="text-danger"> *Manager Name is Required </div>
+                        </div>
+                    </div>
+                    
+                    <div class="sign__group">
+                        <input [pattern]="mobNumberPattern" name="managerContact" [(ngModel)]="managerContact" #mCnct="ngModel"
+                         class="sign__input" placeholder="Manager Contact" required minlength="10">
+                        <div *ngIf="f2.submitted && mCnct.invalid">
+                            <div *ngIf="mCnct.errors.required" class="text-danger">
+                                 *Manager Contact Number is Required </div>
+                        </div>
+                        <div *ngIf="mCnct.invalid">
+                        <div *ngIf="mCnct.errors.minlength" class="text-danger">
+                            *Phone Number Should be of 10 digits</div>
+                        </div>
+                    </div>                   
+                    
+                    <button class="sign__btn" type="button">
+                        Add Theatre</button>
+                    </form>
+            <!-- end authorization form -->
+        </div>
+    </div>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+    
+</div>
+<router-outlet></router-outlet>

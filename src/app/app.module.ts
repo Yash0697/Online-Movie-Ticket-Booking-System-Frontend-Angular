@@ -20,6 +20,9 @@ import { AddTheatreComponent } from './add-theatre/add-theatre.component';
 import { AddShowComponent } from './add-show/add-show.component';
 import { MovieshomeComponent } from './movieshome/movieshome.component';
 import { AddscreenComponent } from './addscreen/addscreen.component';
+import { SelecttheatreForMovieComponent } from './selecttheatre-for-movie/selecttheatre-for-movie.component';
+import { BookticketformovieComponent } from './bookticketformovie/bookticketformovie.component';
+import { SelectshowformovieComponent } from './selectshowformovie/selectshowformovie.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -29,6 +32,8 @@ const routes: Routes = [
   // { path: 'no-access', component: NoAccessComponent }
   { path: 'signup', component: SignupComponent },
   { path: 'movies', component:MovieshomeComponent },
+  { path: 'movie/theatre', component:SelecttheatreForMovieComponent},
+  { path: 'movie/theatre/show', component: SelectshowformovieComponent },
   { path : 'theatre', component: AddTheatreComponent },
   { path: 'screen', component: AddscreenComponent }
 ] 
@@ -44,6 +49,9 @@ const routes: Routes = [
     AddShowComponent,
     AddscreenComponent,
     MovieshomeComponent,
+    SelecttheatreForMovieComponent,
+    BookticketformovieComponent,
+    SelectshowformovieComponent,
   ],
   imports: [
     BrowserModule,

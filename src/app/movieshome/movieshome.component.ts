@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { GetDataService } from '../services/get-data.service';
+import { Movie } from '../classes/Movie';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-movieshome',
@@ -10,9 +13,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MovieshomeComponent implements OnInit {
 
-  constructor() { }
+  movies:Movie[];
+  constructor(private router: Router, private getDataService : GetDataService) { }
 
   ngOnInit(): void {
+    this.getDataService.getMovies().subscribe(data => {
+      console.log(data);
+      this.movies = data;
+    });
+  }
+
+  forwardToBooking(movie){
+    this.router.navigate(['./movie/theatre'], {
+      queryParams: { data: JSON.stringify(movie) }
+    })
   }
 
 }

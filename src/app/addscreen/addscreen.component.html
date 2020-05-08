@@ -1,1 +1,87 @@
-<p>addscreen works!</p>
+<div class="sign section--bg">
+    <div class="container" style="margin-top: 140px;">
+        <div class="col-12">
+            <div class="col-12">
+                <h1 class="details__title">Add Screen To Theatre {{data.theatreName}}</h1>
+            </div>
+                    <div class=" section--bg">
+                        <div class="container">
+                            <div class="col-12">
+                                <div class="sign__content">
+                                    <!-- authorization form -->
+                                    <form #f2="ngForm" method="get" class="sign__form" (ngSubmit)="addScreen()">
+
+                                        <div class="sign__group">
+                                            <input type="text" name="screenName" [(ngModel)]="screenName"
+                                                #tName="ngModel" class="sign__input" placeholder="Screen Name"
+                                                required>
+                                            <div *ngIf="f2.submitted && tName.invalid">
+                                                <div *ngIf="tName.errors.required" class="text-danger"> *Screen Name is
+                                                    Required </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="sign__group">
+                                            <input type="number" name="rows" [(ngModel)]="rows"
+                                                #rows1="ngModel" class="sign__input" placeholder="Number Of Rows"
+                                                required>
+                                            <div *ngIf="f2.submitted && rows1.invalid">
+                                                <div *ngIf="rows1.errors.required" class="text-danger"> *You Must Provide
+                                                    Number Of Rows </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="sign__group">
+                                            <input type="text" name="columns" [(ngModel)]="columns"
+                                                #columns1="ngModel" class="sign__input" placeholder="Number Of Columns" required>
+                                            <div *ngIf="f2.submitted && columns1.invalid">
+                                                <div *ngIf="columns1.errors.required" class="text-danger"> *You Must Provide
+                                                Number Of Columns </div>
+                                            </div>
+                                        </div>
+                                                <!-- <a class="dropdown-toggle header__nav-link" href="#" role="button" id="dropdownMenuCatalog" data-toggle="dropdown"
+                                                    aria-haspopup="true" aria-expanded="true">Catalog</a>
+                                            
+                                                <ul class="dropdown-menu header__dropdown-menu show" aria-labelledby="dropdownMenuCatalog"
+                                                    x-placement="bottom-start"
+                                                    style="position: absolute; transform: translate3d(0px, 21px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                                    <li><a href="catalog1.html">Catalog Grid</a></li>
+                                                    <li><a href="catalog2.html">Catalog List</a></li>
+                                                    <li><a href="details1.html">Details Movie</a></li>
+                                                    <li><a href="details2.html">Details TV Series</a></li>
+                                                </ul> -->
+                                           <!-- Drop down -->
+                                                    <!-- Split button -->
+                                                    <div class="btn-group">
+                                                        <button type="button" class="btn btn-danger">Danger</button>
+                                                        <button type="button" class="btn btn-danger dropdown-toggle px-3" data-toggle="dropdown" aria-haspopup="true"
+                                                            aria-expanded="false">
+                                                            <span class="sr-only">Toggle Dropdown</span>
+                                                        </button>
+                                                        <div class="dropdown-menu">
+                                                            <a class="dropdown-item" href="#">Action</a>
+                                                            <a class="dropdown-item" href="#">Another action</a>
+                                                            <a class="dropdown-item" href="#">Something else here</a>
+                                                            <div class="dropdown-divider"></div>
+                                                            <a class="dropdown-item" href="#">Separated link</a>
+                                                        </div>
+                                                    </div>
+                                           <!-- End DropDown -->
+
+                                        <button class="sign__btn" type="submit">
+                                            Add Screen To Theatre</button>
+                                    </form>
+                                    <!-- end authorization form -->
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                
+           
+        </div>
+    </div>
+
+</div>
+<router-outlet></router-outlet>

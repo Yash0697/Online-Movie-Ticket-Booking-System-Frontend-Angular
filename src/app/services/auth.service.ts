@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
 @Injectable()
 export class AuthService {
 
-    private loginUrl = 'http://localhost:8060/accounts/authenticate';
+    private loginUrl = 'http://localhost:8060/accounts/login';
     private httpOptions = {
         headers: new HttpHeaders({
             'Content-Type': 'application/json',
@@ -20,41 +20,37 @@ export class AuthService {
     login(credentials) {
         
         return this.http.post(`${this.loginUrl}`, credentials, this.httpOptions)
-            // .pipe(map((response: Response) => {
-            //     let result = response.json;
-            //     let token = result['token'];
-            //     if (result && token) {
-            //         localStorage.setItem('token', token);
-            //         return true;
-            //     }
-            //     return false;
-            // }));
+            .pipe(map((response: Response) => {
+                console.log(response);
+                let token = response['token'];
+                if (response && token) {
+                    localStorage.setItem('token', token);
+                    localStorage.setItem('User', response['name']);
+                    return true;
+                }
+                return false;
+            }));
     }
 
     logout() {
         localStorage.removeItem('token');
+        localStorage.removeItem('name');
     }
 
-    // isLoggedIn() {
-    //     return tokenNotExpired();
+     isLoggedIn() {
+         let token = localStorage.getItem('token');
+         if(token)
+         return true;
+         else
+         return false;
+     }
 
-    //     //or
-    //     // let jwtHelper = new JwtHelper();
-    //     // let token = localStorage.getItem('token'); 
-    //     // if(!token)
-    //     // return false;
-    //     // let jwtExpirationDate = jwtHelper.getTokenExpirationDate();
-    //     // let isJwtExpired = jwtHelper.isTokenExpired('token');
+    get currentUser() {
+        let token = localStorage.getItem('token');
+        if (!token) return null;
 
-    //     // return !isJwtExpired;
-    // }
-
-    // get currentUser() {
-    //     let token = localStorage.getToken('token');
-    //     if (!token) return null;
-
-    //     let jwtHelper = new JwtHelper();
-    //     return jwtHelper.decodeToken(token);
-    // }
+       return localStorage.getItem('User');
+       
+    }
 }
 

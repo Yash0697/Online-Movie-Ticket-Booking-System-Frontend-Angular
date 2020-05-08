@@ -14,6 +14,7 @@ import { Authorization } from '../classes/Authorization';
 export class LoginComponent implements OnInit {
 
   public href: string = "";
+  public url: true;
   invalidLogin: boolean;
   email:string;
   password:string;
@@ -28,6 +29,7 @@ export class LoginComponent implements OnInit {
     // this.href = this.router.url;
     // alert(this.router.url);
   }
+
 
   signIn() {
     this.auth = new Authorization(this.email, this.password);

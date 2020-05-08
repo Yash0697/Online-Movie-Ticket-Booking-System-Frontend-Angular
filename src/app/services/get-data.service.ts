@@ -17,6 +17,14 @@ export class GetDataService {
     return this.http.get<Theatre>(`${this.baseUrl}` + `theatre/all`)
   }
 
+  getTheatreListByCityName(cityName): Observable<any>{
+    return this.http.post(`${this.baseUrl}` + `theatre/selectByMovieName`, cityName);
+  }
+
+  getShowsByMovieAndTheatre(movieName, theatreName): Observable<any>{
+    return this.http.post(`${this.baseUrl}` + `theatre/selectByMovieAndTheatre`, movieName, theatreName);
+  }
+
   getTheatreDataById(id) : Observable<any> {
     return this.http.get(`${this.baseUrl}` + 'theatre/'+id)
   }

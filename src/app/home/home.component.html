@@ -12,7 +12,7 @@
                         <ul class="header__nav">
                             <!-- dropdown -->
                             <li class="header__nav-item">
-                                <a class="header__nav-link" href="#" role="button" id="dropdownMenuHome"
+                                <a class="header__nav-link" [routerLink]="['/movies']" routerLinkActive="router-link-active"  role="button" id="dropdownMenuHome"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Home</a>
 
                             </li>
@@ -30,6 +30,11 @@
                                 <a href="#" class="header__nav-link">Help</a>
                             </li>
 
+                            <li class="header__nav-item">
+                                <div *ngIf="authService.isLoggedIn()">
+                                <a href="#" class="header__nav-link">Welcome {{ authService.currentUser }}</a></div>
+                            </li>
+
                             <!-- dropdown -->
 
                             <!-- end dropdown -->
@@ -38,14 +43,17 @@
 
                         <!-- header auth -->
                         <div class="header__auth">
-                            <button class="header__search-btn" type="button">
-                                <i class="icon ion-ios-search"></i>
-                            </button>
 
+                         <div *ngIf="!authService.isLoggedIn() && !isLoginPage()">
                             <a [routerLink]="['/login']" routerLinkActive="router-link-active"  class="header__sign-in">
                                 <i class="icon ion-ios-log-in"></i>
                                 <span>sign in</span>
-                            </a>
+                            </a></div>
+                            <div *ngIf="authService.isLoggedIn()">
+                                <a [routerLink]="['/login']" routerLinkActive="router-link-active" (click)="authService.logout()" class="header__sign-in">
+                                    <i class="icon ion-ios-log-in"></i>
+                                    <span>Log Out</span>
+                                </a></div>
                         </div>
                         <!-- end header auth -->
 

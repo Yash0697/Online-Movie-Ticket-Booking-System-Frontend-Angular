@@ -48,9 +48,9 @@ export class AddTheatreComponent implements OnInit {
   }
 
   addTheatre(){
-    let data: any = new Theatre(1, this.theatreName, this.theatreCity, 
+    let data: Theatre = new Theatre(1, this.theatreName, this.theatreCity, 
       this.listOfMovies, [], this.managerName, this.managerContact);
-   this.router.navigate(['./screen'], {
+      this.router.navigate(['./screen'], {
      queryParams: {data: JSON.stringify(data)}
    })
   }

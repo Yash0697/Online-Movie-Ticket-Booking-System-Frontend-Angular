@@ -75,10 +75,10 @@
                     
                     <div class="sign__group">
                         <input [pattern]="mobNumberPattern" name="managerContact" [(ngModel)]="managerContact" #mCnct="ngModel"
-                         class="sign__input" placeholder="Manager Contact" required minlength="10">
+                         class="sign__input" placeholder="Manager Contact" required minlength="10" appPhonenumber maxlength="10">
                         <div *ngIf="f2.submitted && mCnct.invalid">
                             <div *ngIf="mCnct.errors.required" class="text-danger">
-                                 *Manager Contact Number is Required </div>
+                                 *Manager Contact Number Should be 10 digit long </div>
                         </div>
                         <div *ngIf="mCnct.invalid">
                         <div *ngIf="mCnct.errors.minlength" class="text-danger">

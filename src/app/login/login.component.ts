@@ -15,9 +15,10 @@ export class LoginComponent implements OnInit {
 
   public href: string = "";
   public url: true;
-  invalidLogin: boolean;
+  invalidLogin: boolean  = false;
   email:string;
   password:string;
+  errorMessage: string = "";
   auth : Authorization;
 
   constructor(
@@ -35,11 +36,17 @@ export class LoginComponent implements OnInit {
     this.auth = new Authorization(this.email, this.password);
     this.authService.login(this.auth)
       .subscribe(result => {
+        console.log(result);
         if (result)
-          this.router.navigate(['/']);
-        else
+          this.router.navigate(['/movies']);
+      },
+      (error) => {                              //Error callback
+          console.log('error caught in component')
           this.invalidLogin = true;
-      });
+
+          //throw error;   //You can also throw the error to a global error handler
+        }
+      );
   }
 
 }

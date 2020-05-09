@@ -21,8 +21,10 @@ export class GetDataService {
     return this.http.post(`${this.baseUrl}` + `theatre/selectByMovieName`, cityName);
   }
 
+
   getShowsByMovieAndTheatre(movieName, theatreName): Observable<any>{
-    return this.http.post(`${this.baseUrl}` + `theatre/selectByMovieAndTheatre`, movieName, theatreName);
+    return this.http.get(`${this.baseUrl}` +
+     `theatre/selectByMovieAndTheatre`+`?movieName=`+ movieName + `&&theatreName=` + theatreName);
   }
 
   getTheatreDataById(id) : Observable<any> {

@@ -13,6 +13,8 @@ import { Router } from '@angular/router';
 })
 export class MovieshomeComponent implements OnInit {
 
+  searchMovie: string;
+
   movies:Movie[];
   constructor(private router: Router, private getDataService : GetDataService) { }
 

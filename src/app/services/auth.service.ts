@@ -2,11 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { JwtHelper, tokenNotExpired } from 'angular-jwt';
 import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class AuthService {
 
-    private loginUrl = 'http://localhost:8060/accounts/login';
+    private baseUrl = 'http://localhost:8060/accounts/';
     private httpOptions = {
         headers: new HttpHeaders({
             'Content-Type': 'application/json',
@@ -19,7 +20,7 @@ export class AuthService {
 
     login(credentials) {
         
-        return this.http.post(`${this.loginUrl}`, credentials, this.httpOptions)
+        return this.http.post(`${this.baseUrl}`+`login`, credentials, this.httpOptions)
             .pipe(map((response: Response) => {
                 console.log(response);
                 let token = response['token'];
@@ -29,7 +30,14 @@ export class AuthService {
                     return true;
                 }
                 return false;
-            }));
+            },
+                (error) => {                              //Error callback
+                    console.log('error caught in service')
+
+                }
+            
+            )
+            );
     }
 
     logout() {
@@ -51,6 +59,10 @@ export class AuthService {
 
        return localStorage.getItem('User');
        
+    }
+
+    signup(user): Observable<any> {
+        return this.http.post(`${this.baseUrl}` + `signup`, user);
     }
 }
 

@@ -4,6 +4,7 @@ import { GetDataService } from '../services/get-data.service';
 import { Theatre } from '../classes/Theatre';
 import { Movie } from '../classes/Movie';
 import { Show } from '../classes/Show';
+import { Seat } from '../classes/Seat';
 
 @Component({
   selector: 'app-selectshowformovie',
@@ -18,6 +19,7 @@ export class SelectshowformovieComponent implements OnInit {
   theatre:Theatre;
   movie:Movie;
   shows: Show[];
+  seatList:Seat[];
   constructor(private router: Router, private route: ActivatedRoute, private getDataService: GetDataService) { }
 
   ngOnInit(): void {
@@ -33,7 +35,11 @@ export class SelectshowformovieComponent implements OnInit {
   }
 
   forwardToBooking(show){
-    
+
+  }
+
+  Navigate(value){
+
   }
 
 }

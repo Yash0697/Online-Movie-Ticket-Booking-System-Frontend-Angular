@@ -3,7 +3,7 @@
         <div class="col-12">
             <div class="section__wrap">
                 <!-- section title -->
-                <h2 class="section__title">Shows {{ movie.movieName}} of In {{ theatre.theatreName }} </h2>
+                <h2 class="section__title">Shows of {{ movie.movieName}} In {{ theatre.theatreName }} </h2>
                 <!-- end section title -->
             </div>
             <div class="sign__form">
@@ -14,7 +14,10 @@
                         <tr>
                             <th>Serial</th>
                             <th>Show Name</th>
-                            <th>Show Time</th>
+                            <th>Show Start Time</th>
+                            <th>Show End Time</th>
+                            <th>Available Seats</th>
+
                         </tr>
                     </thead>
                     <tbody>
@@ -22,6 +25,13 @@
                             <td>{{i+1}}</td>
                             <td>{{show.showName}}</td>
                             <td>{{show.showStartTime}}</td>
+                            <td>{{show.showEndTime}}</td>
+                            <td class="text-center">
+                                <select class="mdb-select md-form bg-dark text-white text-center" #select (change)="Navigate(select.value)">
+                                <option class="nav-link bg-dark text-white" disabled selected>Select No. of seats</option>
+                                <option class="nav-link bg-dark text-white" *ngFor="let c of show.seats | filterseatlist , index as i;" value={{c}}>{{i+1}}</option>
+                            </select>
+                        </td>
                         </tr>
                     </tbody>
                 </table>

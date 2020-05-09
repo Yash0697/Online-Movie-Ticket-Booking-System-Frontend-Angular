@@ -23,6 +23,9 @@ import { AddscreenComponent } from './addscreen/addscreen.component';
 import { SelecttheatreForMovieComponent } from './selecttheatre-for-movie/selecttheatre-for-movie.component';
 import { BookticketformovieComponent } from './bookticketformovie/bookticketformovie.component';
 import { SelectshowformovieComponent } from './selectshowformovie/selectshowformovie.component';
+import { FilterseatlistPipe } from './filterseatlist.pipe';
+import { PhonenumberDirective } from './phonenumber.directive';
+import { FiltermoviePipe } from './filtermovie.pipe';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -34,8 +37,8 @@ const routes: Routes = [
   { path: 'movies', component:MovieshomeComponent },
   { path: 'movie/theatre', component:SelecttheatreForMovieComponent},
   { path: 'movie/theatre/show', component: SelectshowformovieComponent },
-  { path : 'theatre', component: AddTheatreComponent },
-  { path: 'screen', component: AddscreenComponent }
+  { path : 'admin/theatre', component: AddTheatreComponent },
+  { path: 'admin/theatre/screen', component: AddscreenComponent }
 ] 
 @NgModule({
   declarations: [
@@ -52,6 +55,9 @@ const routes: Routes = [
     SelecttheatreForMovieComponent,
     BookticketformovieComponent,
     SelectshowformovieComponent,
+    FilterseatlistPipe,
+    PhonenumberDirective,
+    FiltermoviePipe,
   ],
   imports: [
     BrowserModule,

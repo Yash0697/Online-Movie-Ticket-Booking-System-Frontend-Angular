@@ -1,1 +1,47 @@
-<p>signup works!</p>
+
+
+	<div class="sign section--bg" data-bg="img/section/section.jpg">
+		<div class="container" style="margin-top: 80px;">
+			<div class="row">
+				<div class="col-12">
+					<div class="sign__content">
+						<!-- registration form -->
+						<form #f="ngForm" method="get" (ngSubmit)="signUp()" class="sign__form">
+                                <div class="section__wrap">
+                                    <!-- section title -->
+                                    <h2 class="section__title">Register</h2>
+                                    <!-- end section title -->
+                                </div>
+							<div class="sign__group">
+								<input type="text" class="sign__input" name="name" [(ngModel)]="name" placeholder="Name">
+							</div>
+
+							<div class="sign__group">
+								<input type="email" name="email" [(ngModel)]="email" class="sign__input" placeholder="Email">
+							</div>
+
+							<div class="sign__group">
+								<input type="password" name="password" [(ngModel)]="password" class="sign__input" placeholder="Password" required minlength="8">
+                            </div>
+                            
+                            <div class="sign__group">
+                            <input type="text" name="phone" [(ngModel)]="phone" class="sign__input" placeholder="Contact Number" required appPhonenumber maxlength="10">
+                            </div>
+							<div *ngIf="alreadyExists">
+								<p class="text-danger bg-white">User for this Email Already Exists</p>
+							</div>
+
+							<div *ngIf="errorExists">
+								<p class="text-danger bg-white">Some Error Ocurred</p>
+							</div>
+
+							<button class="sign__btn" type="submit">Sign up</button>
+
+							<span class="sign__text">Already have an account? <a [routerLink]="['/login']" >Sign in!</a></span>
+						</form>
+						<!-- registration form -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>

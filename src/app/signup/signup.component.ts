@@ -22,18 +22,18 @@ export class SignupComponent implements OnInit {
   email: string;
   alreadyExists: boolean;
   errorExists: boolean;
+  emailPattern = "^\S+@\S+\.[a-zA-Z0-9_]+$"
   constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
   }
 
   signUp(){
-    alert(this.phone);
     let phoneNo = +this.phone;
     let user = new User('1', 'User', this.name, this.password, phoneNo, this.email);
     this.authService.signup(user)
       .subscribe(result => {
-        console.log(result);
+        if(!(this.name==undefined || this.password==undefined || this.email==undefined || phoneNo == undefined || this.password.length < 8))
           this.router.navigate(['/login']);
       },
         (error) => {                              //Error callback

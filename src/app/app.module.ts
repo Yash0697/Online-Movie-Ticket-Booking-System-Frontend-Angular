@@ -3,11 +3,14 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule, NG_VALIDATORS } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 import { AuthService } from './services/auth.service';
 import { SearchService } from './services/search.service'
 import { GetDataService } from './services/get-data.service'
 import { PostDataService } from './services/post-data.service'
+import { AuthGuard } from './services/auth-guard.service'
+import { AdminAuthGuard } from './services/admin-auth-guard.service'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,19 +29,20 @@ import { SelectshowformovieComponent } from './selectshowformovie/selectshowform
 import { FilterseatlistPipe } from './filterseatlist.pipe';
 import { PhonenumberDirective } from './phonenumber.directive';
 import { FiltermoviePipe } from './filtermovie.pipe';
+import { FiltercityPipe } from './filtercity.pipe';
+import { ShowdetailsComponent } from './showdetails/showdetails.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
-  // { path: 'admin', component: AdminComponent },
   { path: 'login', component: LoginComponent },
   { path: 'search', component:SearchComponent },
-  // { path: 'no-access', component: NoAccessComponent }
   { path: 'signup', component: SignupComponent },
   { path: 'movies', component:MovieshomeComponent },
-  { path: 'movie/theatre', component:SelecttheatreForMovieComponent},
-  { path: 'movie/theatre/show', component: SelectshowformovieComponent },
-  { path : 'admin/theatre', component: AddTheatreComponent },
-  { path: 'admin/theatre/screen', component: AddscreenComponent }
+  { path: 'movie/theatre', component:SelecttheatreForMovieComponent, canActivate: [AuthGuard]},
+  { path: 'movie/theatre/show', component: SelectshowformovieComponent, canActivate: [AuthGuard] },
+  { path: 'movie/theatre/show/showdetails', component: ShowdetailsComponent, canActivate: [AuthGuard] },
+  { path: 'admin/theatre', component: AddTheatreComponent, canActivate: [AuthGuard, AdminAuthGuard] },
+  { path: 'admin/theatre/screen', component: AddscreenComponent, canActivate: [AuthGuard, AdminAuthGuard] }
 ] 
 @NgModule({
   declarations: [
@@ -58,6 +62,8 @@ const routes: Routes = [
     FilterseatlistPipe,
     PhonenumberDirective,
     FiltermoviePipe,
+    FiltercityPipe,
+    ShowdetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,9 +71,10 @@ const routes: Routes = [
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    NgMultiSelectDropDownModule.forRoot()
   ],
-  providers: [AuthService, SearchService, GetDataService, PostDataService, 
+  providers: [AuthService, SearchService, GetDataService, PostDataService, AuthGuard, AdminAuthGuard
    ],
   bootstrap: [AppComponent]
 })

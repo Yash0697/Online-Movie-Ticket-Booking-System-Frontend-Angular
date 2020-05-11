@@ -28,7 +28,7 @@
             <td>{{theatre.managerName}}</td>
             <td>{{ theatre.managerContact }}</td>
             <td>
-                <button [(ngModel)]="theatre.theatreId" class="btn btn-pink btn-md rounded"
+                <button class="btn btn-pink btn-md rounded"
                     (click)="deleteTheatre(theatre)"> Delete Theatre</button></td>
         </tr>
     </tbody>
@@ -50,41 +50,59 @@
                 
                     <div class="sign__group">
                         <input type="text" name="theatreName" [(ngModel)]="theatreName" #tName="ngModel"
-                         class="sign__input" placeholder="Theatre Name" required>
+                         class="sign__input" placeholder="Theatre Name" required minlength="1">
                         <div *ngIf="f2.submitted && tName.invalid">
                             <div *ngIf="tName.errors.required" class="text-danger"> *Theatre Name is Required </div>
+                        </div>
+                        <div *ngIf="tName.invalid">
+                            <div *ngIf="tName.errors.minlength" class="text-danger">*Theatre Name Can not be Null</div>
                         </div>
                     </div>
                     
                     
                     <div class="sign__group">
                         <input type="text" name="theatreCity" [(ngModel)]="theatreCity" #tCity="ngModel"
-                         class="sign__input" placeholder="Theatre City" required>
+                         class="sign__input" placeholder="Theatre City" required minlength="1">
                         <div *ngIf="f2.submitted && tCity.invalid">
                             <div *ngIf="tCity.errors.required" class="text-danger"> *City Name is Required </div>
+                        </div>
+                        <div *ngIf="tCity.invalid">
+                            <div *ngIf="tCity.errors.minlength" class="text-danger">
+                                <p class="text-danger bg-white">
+                                    *City Name Can not be Null</p>
+                            </div>
                         </div>
                     </div>
                     
                     <div class="sign__group">
                         <input type="text" name="theatreManager" [(ngModel)]="managerName" #tMgr="ngModel"
-                         class="sign__input" placeholder="Manager Name" required>
+                         class="sign__input" placeholder="Manager Name" required minlength="1">
                         <div *ngIf="f2.submitted && tMgr.invalid">
-                            <div *ngIf="tMgr.errors.required" class="text-danger"> *Manager Name is Required </div>
+                            <div *ngIf="tMgr.errors.required" class="text-danger">
+                                 *Manager Name is Required</div>
+                        </div>
+                        <div *ngIf="tMgr.invalid">
+                            <div *ngIf="tMgr.errors.minlength" class="text-danger"><p class="text-danger bg-white">
+                                *Manager Name Can not be Null</p></div>
                         </div>
                     </div>
                     
                     <div class="sign__group">
-                        <input [pattern]="mobNumberPattern" name="managerContact" [(ngModel)]="managerContact" #mCnct="ngModel"
-                         class="sign__input" placeholder="Manager Contact" required minlength="10" appPhonenumber maxlength="10">
+                        <input type="text" name="managerContact" [(ngModel)]="managerContact" #mCnct="ngModel"
+                         class="sign__input" appPhonenumber placeholder="Manager Contact" required minlength="10" maxlength="10">
                         <div *ngIf="f2.submitted && mCnct.invalid">
-                            <div *ngIf="mCnct.errors.required" class="text-danger">
-                                 *Manager Contact Number Should be 10 digit long </div>
+                            <div *ngIf="mCnct.errors.required" class="text-danger"> *Manager Contact Number is Required </div>
                         </div>
                         <div *ngIf="mCnct.invalid">
-                        <div *ngIf="mCnct.errors.minlength" class="text-danger">
-                            *Phone Number Should be of 10 digits</div>
+                            <div *ngIf="mCnct.errors.minlength" class="text-danger">*Contact Number should have 10 digits</div>
                         </div>
-                    </div>                   
+                    </div>      
+                       <div class="sign__group">
+
+                        <ng-multiselect-dropdown [placeholder]="'Select Movies'" [data]="movies" [(ngModel)]="selectedItems"
+                            [settings]="dropdownSettings" (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">
+                        </ng-multiselect-dropdown>
+                       </div>
                     
                     <button class="sign__btn" type="submit">
                         Add Theatre</button>
@@ -97,8 +115,10 @@
 </div>
 </div>
 </div>
+
 </div>
 </div>
     
 </div>
+
 <router-outlet></router-outlet>

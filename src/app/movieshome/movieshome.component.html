@@ -20,20 +20,127 @@
                             <th>Movie Name</th>
                             <th>Genre</th>
                             <th>Director</th>
-                            
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let movie of movies; index as i" (click)="forwardToBooking(movie)">
+                        <tr *ngFor="let movie of movies | filtermovie:searchMovie; index as i">
                             <td>{{i+1}}</td>
                             <td>{{movie.movieName}}</td>
                             <td>{{movie.movieGenre}}</td>
                             <td>{{movie.movieDirector}}</td>
+                            <td>
+                                <div *ngIf="!isAdmin"><button 
+                                class="btn btn-pink btn-md rounded" (click)="forwardToBooking(movie)"> 
+                                Book Tickets</button></div>
+                            <div *ngIf="isAdmin">
+                                <button class="btn btn-pink btn-md rounded"
+                                (click)="deleteMovie(movie)"> Delete Movie</button>
+                            </div>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
                 <!-- End Table -->
 
+                <div *ngIf="isAdmin">
+                <form #f1="ngForm" method="get" class="float-right">
+                
+                    <span><button type="submit" (click)="openForm()" class="price__btn">
+                            <p class="ml-3 mr-3 mt-3">Add Movie</p>
+                        </button></span>
+                </form>
+                </div>
+                <div *ngIf="isAdmin && isClicked">
+                <div class="row" class="col-md-8">
+                    <div class="sign section--bg">
+                        <div class="container">
+                            <div class="col-12">
+                                <div class="sign__content">
+                                    <!-- authorization form -->
+                                    <form #f2="ngForm" method="get" class="sign__form" (ngSubmit)="addMovie()">
+                
+                                        <div class="sign__group">
+                                            <input type="text" name="movieId" [(ngModel)]="movieId" #mId="ngModel" class="sign__input"
+                                                appPhonenumber placeholder="Movie ID" required minlength="3">
+                                            <div *ngIf="f2.submitted && mLength.invalid">
+                                                <div *ngIf="mLength.errors.required" class="text-danger"> *Movie ID is
+                                                    Required </div>
+                                            </div>
+                                        
+                                        </div>
+                                        <div class="sign__group">
+                                            <input type="text" name="movieName" [(ngModel)]="movieName" #mName="ngModel"
+                                                class="sign__input" placeholder="Movie Name" required minlength="1">
+                                            <div *ngIf="f2.submitted && mName.invalid">
+                                                <div *ngIf="mName.errors.required" class="text-danger"> *Movie Name is Required </div>
+                                            </div>
+                                            <div *ngIf="mName.invalid">
+                                                <div *ngIf="mName.errors.minlength" class="text-danger">*Movie Name Can not be Null
+                                                </div>
+                                            </div>
+                                        </div>
+                
+                
+                                        <div class="sign__group">
+                                            <input type="text" name="movieGenre" [(ngModel)]="movieGenre" #mGenre="ngModel"
+                                                class="sign__input" placeholder="Movie Genre" required minlength="1">
+                                            <div *ngIf="f2.submitted && mGenre.invalid">
+                                                <div *ngIf="mGenre.errors.required" class="text-danger"> *Movie Genre is Required </div>
+                                            </div>
+                                        </div>
+                
+                                        <div class="sign__group">
+                                            <input type="text" name="movieDirector" [(ngModel)]="movieDirector" #mDirector="ngModel"
+                                                class="sign__input" placeholder="Director" required minlength="1">
+                                            <div *ngIf="f2.submitted && mDirector.invalid">
+                                                <div *ngIf="mDirector.errors.required" class="text-danger">
+                                                    *Director Name is Required</div>
+                                            </div>
+                                        </div>
+                
+                                        <div class="sign__group">
+                                            <input type="text" name="movieLength" [(ngModel)]="movieLength" #mLength="ngModel"
+                                                class="sign__input" appPhonenumber placeholder="Movie Length in Minutes" 
+                                                required minlength="1" maxlength="3">
+                                            <div *ngIf="f2.submitted && mLength.invalid">
+                                                <div *ngIf="mLength.errors.required" class="text-danger"> *Movie Length is
+                                                    Required </div>
+                                            </div>
+                                          
+                                        </div>
+                
+                                        <div class="sign__group">
+                                            <input type="text" name="language" [(ngModel)]="language" #mLanguage="ngModel" class="sign__input"
+                                                 placeholder="Languages separated by comma" required>
+                                            <div *ngIf="f2.submitted && mLanguage.invalid">
+                                                <div *ngIf="mLanguage.errors.required" class="text-danger"> *Language is
+                                                    Required </div>
+                                            </div>
+                                        
+                                        </div>
+
+                                        <div class="sign__group">
+                                            <input type="date" name="releaseDate" [(ngModel)]="releaseDate"
+                                             #mRelease="ngModel" class="sign__input"
+                                                placeholder="Release Date" required>
+                                            <div *ngIf="f2.submitted && mRelease.invalid">
+                                                <div *ngIf="mRelease.errors.required" class="text-danger"> *Release Date is
+                                                    Required </div>
+                                            </div>
+                                        
+                                        </div>
+                                        <button class="sign__btn" type="submit">
+                                            Add Movie</button>
+                                    </form>
+                                    <!-- end authorization form -->
+                                </div>
+                            </div>
+                
+                        </div>
+                    </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

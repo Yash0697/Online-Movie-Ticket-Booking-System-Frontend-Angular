@@ -9,19 +9,26 @@
             <div class="sign__form">
 
                 <!-- Table  -->
+                <div class="sign__group">
+                    <input type="text" name="searchCity" [(ngModel)]="searchCity"
+                     class="sign__input" placeholder="Enter your City">
+                </div>
                 <table class="table table-striped text-white">
                     <thead class="bg-dark text-white">
                         <tr>
                             <th>Serial</th>
                             <th>Theatre Name</th>
                             <th>Theatre City</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let theatre of theatres; index as i" (click)="forwardToBooking(theatre)">
+                        <tr *ngFor="let theatre of theatres | filtercity:searchCity; index as i">
                             <td>{{i+1}}</td>
                             <td>{{theatre.theatreName}}</td>
                             <td>{{theatre.theatreCity}}</td>
+                            <td><button class="btn btn-pink btn-md rounded" (click)="forwardToBooking(theatre)">
+                                Select Theatre to Book Tickets</button></td>
                         </tr>
                     </tbody>
                 </table>

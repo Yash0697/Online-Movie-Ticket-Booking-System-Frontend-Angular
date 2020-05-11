@@ -13,20 +13,43 @@
                                     <!-- end section title -->
                                 </div>
 							<div class="sign__group">
-								<input type="text" class="sign__input" name="name" [(ngModel)]="name" placeholder="Name">
+								<input type="text" class="sign__input" name="name" [(ngModel)]="name"
+								#name1="ngModel" placeholder="Name" required minlength="1">
+								<div *ngIf="f.submitted && name1.invalid">
+									<div *ngIf="name1.errors.required" class="text-danger"> *Name is Required </div>
+								</div>
+								<div *ngIf="name1.invalid">
+									<div *ngIf="name1.errors.minlength" class="text-danger">*Name Can't be Null</div>
+								</div>
 							</div>
 
 							<div class="sign__group">
-								<input type="email" name="email" [(ngModel)]="email" class="sign__input" placeholder="Email">
+								<input type="text" class="form-control sign__input" name="email" [(ngModel)]="email"
+								 #email1="ngModel" placeholder="Email" [ngClass]="{ 'is-invalid': f.submitted
+								  && email1.invalid }" required email />
+								<div *ngIf="f.submitted && email1.invalid" class="invalid-feedback">
+									<div *ngIf="email1.errors.required">Email is required</div>
+									<div *ngIf="email1.errors.email">Email must be a valid email address</div>
+								</div>
 							</div>
 
 							<div class="sign__group">
-								<input type="password" name="password" [(ngModel)]="password" class="sign__input" placeholder="Password" required minlength="8">
-                            </div>
+								<input type="password" name="password" [(ngModel)]="password" #pass="ngModel" class="sign__input"
+								 placeholder="Password" required minlength="8">
+							<div *ngIf="f.submitted && pass.invalid">
+								<div *ngIf="pass.errors.required" class="text-danger"> *Password is Required </div>
+							</div>
+							<div *ngIf="pass.invalid">
+								<div *ngIf="pass.errors.minlength" class="text-danger">*Password should have atleast 8 digits</div>
+							</div>
+							</div>
                             
                             <div class="sign__group">
-                            <input type="text" name="phone" [(ngModel)]="phone" class="sign__input" placeholder="Contact Number" required appPhonenumber maxlength="10">
-                            </div>
+                            <input type="text" name="phone" #phone1="ngModel" [(ngModel)]="phone" class="sign__input" placeholder="Contact Number" required appPhonenumber maxlength="10">
+								<div *ngIf="f.submitted && phone1.invalid">
+									<div *ngIf="phone1.errors.required" class="text-danger"> *Contact Number is Required </div>
+								</div>
+						</div>
 							<div *ngIf="alreadyExists">
 								<p class="text-danger bg-white">User for this Email Already Exists</p>
 							</div>

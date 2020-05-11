@@ -19,7 +19,7 @@ export class PhonenumberDirective {
       return;
     }
     const inputValue:string = this.elementRef.nativeElement.value.concat(event.key);
-    console.log(event.key);
+    // console.log(event.key);
     if(inputValue && !String(inputValue).match(this.regex)){
       event.preventDefault();
     }

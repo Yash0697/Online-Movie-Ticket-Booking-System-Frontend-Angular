@@ -25,8 +25,9 @@ export class AuthService {
                 console.log(response);
                 let token = response['token'];
                 if (response && token) {
-                    localStorage.setItem('token', token);
                     localStorage.setItem('User', response['name']);
+                    localStorage.setItem('token',token);
+                    localStorage.setItem('type', response['type']);
                     return true;
                 }
                 return false;
@@ -42,7 +43,7 @@ export class AuthService {
 
     logout() {
         localStorage.removeItem('token');
-        localStorage.removeItem('name');
+        localStorage.removeItem('User');
     }
 
      isLoggedIn() {
@@ -59,6 +60,13 @@ export class AuthService {
 
        return localStorage.getItem('User');
        
+    }
+
+    get userType(){
+        let type = localStorage.getItem('type');
+        console.log(type);
+        if(!type) return null;
+        return type;
     }
 
     signup(user): Observable<any> {

@@ -35,7 +35,9 @@ export class SelectshowformovieComponent implements OnInit {
   }
 
   forwardToBooking(show){
-
+   this.router.navigate(['./movie/theatre/show/showdetails'], {
+    queryParams: { theatre: JSON.stringify(this.theatre), movie: JSON.stringify(this.movie), show: JSON.stringify(show) }
+  })
   }
 
   Navigate(value){

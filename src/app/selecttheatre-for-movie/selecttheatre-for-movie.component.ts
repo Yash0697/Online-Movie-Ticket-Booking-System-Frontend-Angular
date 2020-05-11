@@ -17,6 +17,7 @@ export class SelecttheatreForMovieComponent implements OnInit {
   data: any;
   movie: Movie;
   theatres:Theatre[];
+  searchCity: string="";
   constructor(private router: Router, private route: ActivatedRoute, private getDataService: GetDataService) { }
 
   ngOnInit(): void {

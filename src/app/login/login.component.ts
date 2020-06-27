@@ -35,9 +35,7 @@ export class LoginComponent implements OnInit {
   signIn() {
     this.auth = new Authorization(this.email, this.password);
     this.authService.login(this.auth)
-      .subscribe(result => {
-        console.log(result);
-        if (result)
+      .subscribe(result => {       
           this.router.navigate(['/movies']);
       },
       (error) => {                              //Error callback

@@ -1,1 +1,128 @@
-<p>add-show works!</p>
+<div class="sign section--bg">
+    <div class="container" style="margin-top: 140px;">
+        <div class="col-12">
+            <div class="section__wrap">
+                <!-- section title -->
+                <h2 class="section__title">Shows</h2>
+                <!-- end section title -->
+            </div>
+            <div class="sign__form">
+
+                <!-- Table  -->
+                <table class="table table-striped text-white">
+                    <thead class="bg-dark text-white">
+                        <tr>
+                            <th>Serial</th>
+                            <th>Show Name</th>
+                            <th>Show Start Time</th>
+                            <th>Show End Time</th>
+                            <th>Movie Name</th>
+                            <th>Theatre ID</th>
+                            <th>Screen ID</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let show of showList; index as i">
+                            <td>{{i+1}}</td>
+                            <td>{{show.showName}}</td>
+                            <td>{{show.showStartTime}}</td>
+                            <td>{{show.showEndTime}}</td>
+                            <td>{{ show.movieName.movieName }}</td>
+                            <td>{{ show.theatreId }}</td>
+                            <td> {{ show.screenId }} </td>
+                            <td>
+                                <button class="btn btn-pink btn-md rounded" (click)="deleteShow(show)"> Delete
+                                    Show</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- End Table -->
+                <form #f1="ngForm" method="get" class="float-right">
+
+                    <span><button type="submit" class="price__btn">
+                            <p class="ml-3 mr-3 mt-3">Add Show</p>
+                        </button></span>
+
+                </form>
+
+                <div class="row" *ngIf="f1.submitted" class="col-md-8">
+                    <div class="sign section--bg">
+                        <div class="container">
+                            <div class="col-12">
+                                <div class="sign__content">
+                                    <!-- authorization form -->
+                                <form #f2="ngForm" method="get" class="sign__form" (ngSubmit)="addShow()">
+                                
+                                
+                                    <div class="sign__group">
+                                        <input type="text" class="sign__input" name="showId" [(ngModel)]="showId" #si="ngModel" id="showId"
+                                            placeholder="Show ID" required minlength="8">
+                                        <div *ngIf="f2.submitted && si.invalid">
+                                            <div *ngIf="si.errors.required" class="text-danger"> *Show ID is Required </div>
+                                        </div>
+                                        <div *ngIf="si.invalid">
+                                            <div *ngIf="si.errors.minlength" class="text-danger">*Show Id should have atleast 8 characters</div>
+                                        </div>
+                                    </div>
+                                
+                                    <div class="sign__group">
+                                        <input type="text" class="sign__input" name="showName" [(ngModel)]="showName" #sn="ngModel" id="showName"
+                                            placeholder="Show Name" required>
+                                        <div *ngIf="f2.submitted && sn.invalid">
+                                            <div *ngIf="sn.errors.required" class="text-danger"> *Show Name is Required </div>
+                                        </div>
+                                    </div>
+                                
+                                    <div class="sign__group">
+                                    <label for="showEndTime" class="details__devices-title">Show Start Time</label>
+                                        <input type="time" class="sign__input" name="showStartTime" [(ngModel)]="showStartTime" #st="ngModel"
+                                            id="showStartTime" placeholder="Show Start Time" required>
+                                        <div *ngIf="f2.submitted && st.invalid">
+                                            <div *ngIf="st.errors.required" class="text-danger"> *Show Must have a start time </div>
+                                        </div>
+                                    </div>
+                                
+                                    <div class="sign__group">
+                                        <label for="showEndTime" class="details__devices-title">Show End Time</label>
+                                        
+                                        <input type="time" class="sign__input" name="showEndTime" [(ngModel)]="showEndTime" #se="ngModel"
+                                            id="showEndTime" placeholder="Show End Time" required>
+                                        <div *ngIf="f2.submitted && se.invalid">
+                                            <div *ngIf="se.errors.required" class="text-danger"> *Show Must have a end time </div>
+                                        </div>
+                                    </div>
+                                
+                                <label for="selectMovie" class="details__devices-title">Select Movie</label>
+                                <select class="custom-select bg-dark text-white rounded text-center"
+                                    id="selectMovie" [(ngModel)]="movieSelected">  
+                                        <option *ngFor="let m of movieNames" [value]="m">{{m.movieName}}</option>
+                                    </select>
+                                    <br>
+                                <label for="selectScreen" class="details__devices-title">Select Screen</label>
+                                    <select class="custom-select bg-dark text-white rounded text-center"
+                                     #select (change)="selectScreen(select.value)" id="selectScreen">
+                                       
+                                        <option *ngFor="let s of screens" [value]="s.screenId">{{s.screenId}}</option>
+                                    </select>
+                                    <br>
+                                    
+                                    <button class="sign__btn" type="submit">Add Show</button>
+                                
+                                
+                                </form>
+                                    <!-- end authorization form -->
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<router-outlet></router-outlet>

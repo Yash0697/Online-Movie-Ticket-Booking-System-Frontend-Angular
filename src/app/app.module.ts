@@ -31,10 +31,13 @@ import { PhonenumberDirective } from './phonenumber.directive';
 import { FiltermoviePipe } from './filtermovie.pipe';
 import { FiltercityPipe } from './filtercity.pipe';
 import { ShowdetailsComponent } from './showdetails/showdetails.component';
+import { TheatreComponent } from './theatre/theatre.component';
+import { FilterShowsPipe } from './filter-shows.pipe';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'theatre', component: TheatreComponent },
   { path: 'search', component:SearchComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'movies', component:MovieshomeComponent },
@@ -42,6 +45,7 @@ const routes: Routes = [
   { path: 'movie/theatre/show', component: SelectshowformovieComponent, canActivate: [AuthGuard] },
   { path: 'movie/theatre/show/showdetails', component: ShowdetailsComponent, canActivate: [AuthGuard] },
   { path: 'admin/theatre', component: AddTheatreComponent, canActivate: [AuthGuard, AdminAuthGuard] },
+  { path: 'admin/show', component: AddShowComponent, canActivate: [AuthGuard, AdminAuthGuard]},
   { path: 'admin/theatre/screen', component: AddscreenComponent, canActivate: [AuthGuard, AdminAuthGuard] }
 ] 
 @NgModule({
@@ -64,6 +68,8 @@ const routes: Routes = [
     FiltermoviePipe,
     FiltercityPipe,
     ShowdetailsComponent,
+    TheatreComponent,
+    FilterShowsPipe,
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Movie } from '../classes/Movie';
+import { SearchService } from '../services/search.service';
 
 @Component({
   selector: 'app-search',
@@ -10,18 +13,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchComponent implements OnInit {
 
-  city:string;
-  theatre:string;
-  constructor() { }
+  theatreCity:String 
+  theatreName :String;
+  movies : Movie []
+
+    listOfMovies : Movie []
+  theatreCities : String []
+  theatreNames : String[]
+  constructor(private myService : SearchService) { }
 
   ngOnInit(): void {
-  }
 
-  searchByCity(){
-
+    this.myService.getAllCities().subscribe(data => {
+      this.theatreCities = data;
+      console.log(this.theatreCities)
+    })
   }
+ 
 
-  searchByTheatre(){
-    
-  }
+  
+  Navigate(value) {
+    this.myService.searchMovieByCity(value)
+      .subscribe(data => {
+        this.movies = data;
+      });
+
+}
+Book()
+{
+  alert("first you have to registered...")
+}
 }

@@ -5,20 +5,19 @@ import { Seat } from './Seat';
 export class Booking
 {
 bookingId:number;
-ticket:Ticket;
  movieId:number;
   showRef:Show;
   showId:number;
    bookingDate:Date;
    transactionId:number;
    totalCost:number;
-    seatList:Seat;
+    seatList:Seat[];
+    userId:string;
 
 
-    Booking(bookingId:number, ticket:Ticket, movieId:number, showRef:Show,showId:number, bookingDate:Date,transactionId:number,totalCost:number, seatList:Seat)
+    constructor(bookingId:number,  movieId:number, showRef:Show,showId:number, bookingDate:Date,transactionId:number,totalCost:number, seatList:Seat[], userId: string)
     {
      this.bookingId=bookingId;
-     this.ticket=ticket;
      this.movieId=movieId;
      this.showRef=showRef;
      this.showId=showId;
@@ -26,5 +25,6 @@ ticket:Ticket;
      this.transactionId=transactionId;
      this.totalCost=totalCost;
      this.seatList=seatList;
+     this.userId = userId;
     }
 }

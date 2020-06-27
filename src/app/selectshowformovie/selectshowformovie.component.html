@@ -16,22 +16,23 @@
                             <th>Show Name</th>
                             <th>Show Start Time</th>
                             <th>Show End Time</th>
-                            <!-- <th>Available Seats</th> -->
+                            <th>Available Seats</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let show of shows; index as i">
+                        <tr *ngFor="let show of shows | filterShows, index as i;">
                             <td>{{i+1}}</td>
                             <td>{{show.showName}}</td>
                             <td>{{show.showStartTime}}</td>
                             <td>{{show.showEndTime}}</td>
-                            <!-- <td>
-                                <select class="mdb-select md-form bg-dark text-white text-center" #select (change)="Navigate(select.value)">
+                            <td>
+                                <select class="mdb-select md-form bg-dark text-white text-center" [(ngModel)]="selectedSeats">
                                 <option class="nav-link bg-dark text-white" disabled selected>Select No. of seats</option>
-                                <option class="nav-link bg-dark text-white" *ngFor="let c of show.seats | filterseatlist , index as i;" value={{c}}>{{i+1}}</option>
+                                <option class="nav-link bg-dark text-white" *ngFor="let c of show.seats | filterseatlist ,
+                                 index as i;" [value]="i+1">{{i+1}}</option>
                             </select>
-                        </td> -->
+                        </td>
                         <td><button class="btn btn-pink btn-md rounded" (click)="forwardToBooking(show)">
                                 Select Show to book Tickets</button></td>
                         </tr>

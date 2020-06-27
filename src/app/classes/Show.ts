@@ -1,11 +1,12 @@
 import { Movie } from './Movie';
 import { Seat } from './Seat';
+import { Time } from '@angular/common';
 
 
 export class Show{
 showId:number;
-showStartTime:string;
-showEndTime:string;
+showStartTime:Time;
+showEndTime:Time;
 seats:Seat[];
 showName:string;
 movieName:Movie;
@@ -13,7 +14,7 @@ screenId:number;
 theatreId:number;
 
 
-constructor(showId:number,  showStartTime:string , showEndTime:string,  seats:Seat[],  showName:string,  movieName:Movie,screenId:number, theatreId:number)
+constructor(showId:number,  showStartTime:Time , showEndTime:Time,  seats:Seat[],  showName:string,  movieName:Movie,screenId:number, theatreId:number)
    {
  this.showId = showId;
 this.showStartTime = showStartTime;

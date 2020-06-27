@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Theatre } from '../classes/Theatre';
 import { Movie } from '../classes/Movie';
+import { Show } from '../classes/Show';
 
 
 @Injectable({
@@ -31,16 +32,16 @@ export class GetDataService {
     return this.http.get(`${this.baseUrl}` + 'theatre/'+id)
   }
 
-  getScreenData() {
-    return this.http.get(`${this.baseUrl}` + 'screen/all')
+  getScreenData(): Observable<any> {
+    return this.http.get<Screen>(`${this.baseUrl}` + 'screen/all')
   }
 
-  getScreenDataById(id) {
+  getScreenDataById(id): Observable<any>{
     return this.http.get(`${this.baseUrl}` + 'screen/' + id)
   }
 
-  getShowData(){
-    return this.http.get(`${this.baseUrl}` + 'show/all')
+  getShowData(): Observable<any>{
+    return this.http.get<Show>(`${this.baseUrl}` + 'show/all')
   }
 
   getShowDataById(id) {

@@ -20,19 +20,18 @@
 
                             <!-- dropdown -->
                             <li class="header__nav-item">
-                                <a class="dropdown-toggle header__nav-link" href="#" role="button"
-                                    id="dropdownMenuCatalog" data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false">Cities</a>
+                                <a [routerLink]="['/search']" routerLinkActive="active"
+                                 class="header__nav-link">Search By City</a>
+                            </li>
+                           - <li class="header__nav-item">
+                                <a [routerLink]="['/theatre']" class="header__nav-link">
+                                    Search By Theatre</a>
                             </li>
                             <!-- end dropdown -->
 
                             <li class="header__nav-item">
-                                <a href="#" class="header__nav-link">Help</a>
-                            </li>
-
-                            <li class="header__nav-item">
                                 <div *ngIf="authService.isLoggedIn()">
-                                <a href="#" class="header__nav-link">Welcome {{ authService.currentUser }}</a></div>
+                                <a [routerLink]="['/movies']" routerLinkActive="router-link-active"  class="header__nav-link">Welcome {{ authService.currentUser }}</a></div>
                             </li>
 
                             <!-- dropdown -->

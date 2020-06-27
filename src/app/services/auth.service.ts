@@ -23,10 +23,10 @@ export class AuthService {
         return this.http.post(`${this.baseUrl}`+`login`, credentials, this.httpOptions)
             .pipe(map((response: Response) => {
                 console.log(response);
-                let token = response['token'];
-                if (response && token) {
-                    localStorage.setItem('User', response['name']);
-                    localStorage.setItem('token',token);
+                let name = response['name'];
+                if (response && name) {
+                    localStorage.setItem('User', JSON.stringify(response));
+                    localStorage.setItem('name',name);
                     localStorage.setItem('type', response['type']);
                     return true;
                 }
@@ -42,12 +42,13 @@ export class AuthService {
     }
 
     logout() {
-        localStorage.removeItem('token');
+        localStorage.removeItem('name');
         localStorage.removeItem('User');
+        localStorage.removeItem('type');
     }
 
      isLoggedIn() {
-         let token = localStorage.getItem('token');
+         let token = localStorage.getItem('name');
          if(token)
          return true;
          else
@@ -55,10 +56,10 @@ export class AuthService {
      }
 
     get currentUser() {
-        let token = localStorage.getItem('token');
+        let token = localStorage.getItem('name');
         if (!token) return null;
 
-       return localStorage.getItem('User');
+       return localStorage.getItem('name');
        
     }
 

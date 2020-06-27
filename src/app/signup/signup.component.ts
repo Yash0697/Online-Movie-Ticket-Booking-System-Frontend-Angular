@@ -22,7 +22,6 @@ export class SignupComponent implements OnInit {
   email: string;
   alreadyExists: boolean;
   errorExists: boolean;
-  emailPattern = "^\S+@\S+\.[a-zA-Z0-9_]+$"
   constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {

@@ -32,7 +32,9 @@ export class MovieshomeComponent implements OnInit {
   isClicked:boolean;
   constructor(private router: Router, private getDataService : GetDataService,
     private postDataService: PostDataService,
-     private authService: AuthService) { }
+     private authService: AuthService) {
+       
+      }
 
   ngOnInit(): void {
     this.getDataService.getMovies().subscribe(data => {

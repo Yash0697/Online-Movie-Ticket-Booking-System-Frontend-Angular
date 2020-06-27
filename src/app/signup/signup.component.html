@@ -45,7 +45,8 @@
 							</div>
                             
                             <div class="sign__group">
-                            <input type="text" name="phone" #phone1="ngModel" [(ngModel)]="phone" class="sign__input" placeholder="Contact Number" required appPhonenumber maxlength="10">
+							<input type="text" name="phone" #phone1="ngModel" [(ngModel)]="phone" class="sign__input" 
+							placeholder="Contact Number" required appPhonenumber maxlength="10">
 								<div *ngIf="f.submitted && phone1.invalid">
 									<div *ngIf="phone1.errors.required" class="text-danger"> *Contact Number is Required </div>
 								</div>

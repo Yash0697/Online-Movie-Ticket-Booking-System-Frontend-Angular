@@ -3,6 +3,7 @@ import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 
 
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -20,8 +21,8 @@ export class HomeComponent {
 isLoginPage(){
   this.href = this.router.url;
   if(this.href=='/login')
-  return true;
+    return true;
   else
-  return false;
+    return false;
 }
 }
